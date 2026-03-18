@@ -21,6 +21,7 @@ Clone this repository
 
 ```bash
 git clone https://github.com/LatifiLab/lab2p.git
+```
 
 ---
 
