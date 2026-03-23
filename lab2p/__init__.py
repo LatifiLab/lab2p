@@ -4,6 +4,7 @@ from .summary import summarize_rois
 from .trace_export import batch_export_traces_excel
 from .network_qc import batch_export_network_qc
 from .network_summary import summarize_fc_group
+from .network_plots import batch_export_network_plots
 
 __all__ = [
     "run_qc",
@@ -11,5 +12,6 @@ __all__ = [
     "batch_export_traces_excel",
     "batch_export_network_qc",
     "summarize_fc_group",
+    "batch_export_network_plots",
     "__version__",
 ]

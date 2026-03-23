@@ -64,6 +64,7 @@ def save_heatmap_common(
     ax.set_ylabel("Cell index (sorted)")
     plt.colorbar(im, ax=ax).set_label("dF/F (display)")
 
+    #roi_dir = qc_dir / "ROI_traces"
     out_svg = Path(out_svg)
     out_svg.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_svg, bbox_inches="tight")
@@ -147,6 +148,7 @@ def save_roi_circles_one_range(
             bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.5),
         )
 
+    # roi_dir = qc_dir / "ROI_traces"
     out_svg = Path(out_svg)
     out_svg.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_svg, bbox_inches="tight")
@@ -243,6 +245,7 @@ def save_roi_circles_two_ranges(
         handles.append(Line2D([0], [0], color=overlap_color, lw=lwOverlap, label=f"Overlap  n={len(overlap)}"))
     ax.legend(handles=handles, loc="upper right", frameon=True, fontsize=9)
 
+    # roi_dir = qc_dir / "ROI_traces"
     out_svg = Path(out_svg)
     out_svg.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_svg, bbox_inches="tight")

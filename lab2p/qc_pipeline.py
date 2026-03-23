@@ -76,14 +76,23 @@ def run_qc_pipeline(
         except Exception as e:
             (qc_dir / "FAILED_masks.txt").write_text(f"{type(e).__name__}: {e}")
 
-        heatmap_path = qc_dir / f"{ts_name}__heatmap_{pos_lo}_{pos_hi}.svg"
-        roi_one_path = qc_dir / f"{ts_name}__roi_{pos_lo}_{pos_hi}.svg"
-        roi_cmp_path = qc_dir / f"{ts_name}__roi_compare_{compare_ranges[0]}__vs__{compare_ranges[1]}.svg"
+        fig_dir = qc_dir / "ROI_traces"
+        tag = f"{pos_lo}_{pos_hi}".replace(".", "p")
+        heatmap_path = fig_dir / f"{ts_name}__heatmap_{tag}.svg"
+        roi_one_path = fig_dir / f"{ts_name}__roi_{tag}.svg"
+        cmp_tag = (
+                    f"{compare_ranges[0][0]}_{compare_ranges[0][1]}__vs__"
+                    f"{compare_ranges[1][0]}_{compare_ranges[1][1]}").replace(".", "p")
+
+        roi_cmp_path = fig_dir / f"{ts_name}__roi_compare_{cmp_tag}.svg"
+        # heatmap_path = fig_dir / f"{ts_name}__heatmap_{pos_lo}_{pos_hi}.svg"
+        # roi_one_path = fig_dir / f"{ts_name}__roi_{pos_lo}_{pos_hi}.svg"
+        # roi_cmp_path = fig_dir / f"{ts_name}__roi_compare_{compare_ranges[0]}__vs__{compare_ranges[1]}.svg"
 
         # make filenames Windows-safe (replace '.' with 'p')
-        heatmap_path = Path(str(heatmap_path).replace(".", "p"))
-        roi_one_path = Path(str(roi_one_path).replace(".", "p"))
-        roi_cmp_path = Path(str(roi_cmp_path).replace(".", "p"))
+        # heatmap_path = Path(str(heatmap_path).replace(".", "p"))
+        # roi_one_path = Path(str(roi_one_path).replace(".", "p"))
+        # roi_cmp_path = Path(str(roi_cmp_path).replace(".", "p"))
 
         try:
             save_heatmap_common(
@@ -112,6 +121,7 @@ def run_qc_pipeline(
                 )
             ok += 1
         except Exception as e:
+            print('have plotting failure!!!')
             (qc_dir / "FAILED_qc.txt").write_text(f"{type(e).__name__}: {e}")
             fail += 1
 
