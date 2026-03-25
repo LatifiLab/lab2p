@@ -1,0 +1,18 @@
+name: my_suite2p_env
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - jupyterlab
+  - pip
+  - pip:
+      - networkx
+      - suite2p
+      - openpyxl
